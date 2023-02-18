@@ -15,7 +15,7 @@
 
    @automated
    Scenario Outline: I am able to add my skill details
-   Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+    Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When I click on Skills tab
 	And I click on Add New button below Skills tab
@@ -35,13 +35,13 @@
 	And I click on Add New button below certification tab
 	And I Add <Certificate or Award> and <Certified From> and <Year> on certification tab
 	And I click on Add button
-	Then I Validate that <Certificate or Award> and <Certified From> and <Year>are added
+    Then I Validate that <Certificate or Award> and <Certified From> and <Year>are added
 	Examples:
 	| Certificate or Award | Certified From | Year |
 	|     Barch            |    Adobe       |  2017|
 
-		@automated
-     Scenario Outline:I am able to add my Education details 
+	@automated
+    Scenario Outline:I am able to add my Education details 
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When I click on Education tab
@@ -55,7 +55,7 @@
 	
 
 	 @mytag
-   Scenario:I am able to add my Description in Profile
+    Scenario:I am able to add my Description in Profile
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When I click on Edit button near Description box
@@ -64,7 +64,7 @@
 	Then I validate that Description is saved
 
 	 @mytag
-   Scenario:I am able to add my Availability details in Profile.
+    Scenario:I am able to add my Availability details in Profile.
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When i click on Availability drop down list.
@@ -72,7 +72,7 @@
 	Then i validate that "Part time" is selected from availability drop down list. 
 
 	 @mytag
-   Scenario:I am able to add my Hours details in Profile.
+    Scenario:I am able to add my Hours details in Profile.
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When i click on Hours drop down list.
@@ -80,7 +80,7 @@
 	
 
 	 @mytag
-   Scenario:I am able to add my Earn Target details in Profile.
+    Scenario:I am able to add my Earn Target details in Profile.
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When i click on Earn Target drop down list
@@ -88,8 +88,8 @@
 	Then i validate that "Less than $500 per month" is selected from Target drop down list. 
 
 
-   @mytag
-   Scenario: I am able to Send requests 
+    @mytag
+    Scenario: I am able to Send requests 
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	And I click on serach skill icon
@@ -100,8 +100,8 @@
 	Then My request is sent.
 	
 	
-	 @mytag
-   Scenario: User is able to validate the Send requests 
+	@mytag
+    Scenario: User is able to validate the Send requests 
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
 	When i hover on Managed requests and click on sent requests
@@ -117,12 +117,10 @@
 
    @mytag
    Scenario: User is able to view and Validate the Received Requests 
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	Then I hover on  Manage Requests and click on Received Requests to see the received requests
-	Then i validate the Received Requests
-
-
+   Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+   And I am at the Profile page
+   Then I hover on  Manage Requests and click on Received Requests to see the received requests
+   Then i validate the Received Requests
 
 
   @mytag
@@ -132,20 +130,21 @@
     And i click on chat link
     And i type message in message box
     And I click on send button
+	Then I validate the chat messages send
 	
-    
+	
 
-   @mytag
-   Scenario: User is able to search skills by category
- Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+    @mytag
+    Scenario: User is able to search skills by category
+    Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
     And I click on searchskillsIcon
     And I click on Graphics & Design Category under All categories
     When I click on image of the displayed person
     Then I validate that person is under Graphics & Design Category
 
-   @mytag
-   Scenario: User is able to search skills by Subcategory
+    @mytag
+    Scenario: User is able to search skills by Subcategory
     Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
     And I click on searchskillsIcon
@@ -155,8 +154,8 @@
     Then I validate that person is under LogoDesign subCategory
 
 	@mytag
-   Scenario: User is able to search skills by Filter
- Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+    Scenario: User is able to search skills by Filter
+    Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
     And I click on searchskillsIcon
     And I click on Online under Filter

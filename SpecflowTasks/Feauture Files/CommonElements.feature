@@ -3,25 +3,25 @@ As a user i am able to do the functionalties of the application which is common 
 
    @my tag
    Scenario: I am able to check show less functionality
-    Given I am logged in at "http://192.168.99.100:5000/" to log into application
-	When i click sign in from login page
-    And I enter My Login Credentials
-	And I am at the Profile page now
-	 And I Hover on Notification and click ShowLess
-    Then i validate show Less 
+   Given I am logged in at "http://192.168.99.100:5000/" to log into application
+   When i click sign in from login page
+   And I enter My Login Credentials
+   And I am at the Profile page now
+   And I Hover on Notification and click ShowLess
+   Then i validate show Less 
 
    @my tag
    Scenario: User should be able to check Load More functionality
    Given I am logged in at "http://192.168.99.100:5000/" to log into application
-	When i click sign in from login page
-    And I enter My Login Credentials
-	And I am at the Profile page now
-	And I Hover on Notification and Click Load More
-    Then i validate Load more
+   When i click sign in from login page
+   And I enter My Login Credentials
+   And I am at the Profile page now
+   And I Hover on Notification and Click Load More
+   Then i validate Load more
 
     
-	  @my tag
-   Scenario: I am able to Delete Notifications
+	@my tag
+    Scenario: I am able to Delete Notifications
     Given I am logged in at "http://192.168.99.100:5000/" to log into application
 	When i click sign in from login page
     And I enter My Login Credentials
@@ -29,18 +29,18 @@ As a user i am able to do the functionalties of the application which is common 
     When I Hover on Notification and Delete Notification
     Then i validate that the notification is Deleted.
 
-   @my tag
-   Scenario:I am able to Select All Notifications
-   Given I am logged in at "http://192.168.99.100:5000/" to log into application
+    @my tag
+    Scenario:I am able to Select All Notifications
+    Given I am logged in at "http://192.168.99.100:5000/" to log into application
 	When i click sign in from login page
     And I enter My Login Credentials
 	And I am at the Profile page now
     And I Hover on Notification and click select all
     Then i validate select all
 
-     @my tag
-   Scenario:I am able to UnSelect All Notifications
-   Given I am logged in at "http://192.168.99.100:5000/" to log into application
+    @my tag
+    Scenario:I am able to UnSelect All Notifications
+    Given I am logged in at "http://192.168.99.100:5000/" to log into application
 	When i click sign in from login page
     And I enter My Login Credentials
 	And I am at the Profile page now
