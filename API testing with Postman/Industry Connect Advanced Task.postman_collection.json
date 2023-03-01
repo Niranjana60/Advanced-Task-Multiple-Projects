@@ -7,15 +7,266 @@
 	},
 	"item": [
 		{
-			"name": "Regres",
+			"name": "Regres_API_Testing",
 			"item": [
 				{
-					"name": "GET Request",
+					"name": "GET_All_Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify that status code is 200\",function(){pm.response.to.have.status(200)});\r",
+									"\r",
+									"pm.test(\"verify that status code has string ok\",function(){pm.response.to.have.status(\"OK\")}\r",
+									")\r",
+									"pm.test(\"Cache-Control is set to no-cache\", function () {\r",
+									"    pm.response.to.have.header(\"Cache-Control\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"//checking headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is present\", function () {\r",
+									"    pm.response.to.have.header(\"ETag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is valid\", function () {\r",
+									"    var etagHeader = pm.response.headers.get(\"ETag\");\r",
+									"    pm.expect(etagHeader).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"page\",\r",
+									"        \"per_page\",\r",
+									"        \"total\",\r",
+									"        \"total_pages\",\r",
+									"        \"data\",\r",
+									"        \"support\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"page\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The page Schema\",\r",
+									"            \"examples\": [\r",
+									"                2\r",
+									"            ]\r",
+									"        },\r",
+									"        \"per_page\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The per_page Schema\",\r",
+									"            \"examples\": [\r",
+									"                6\r",
+									"            ]\r",
+									"        },\r",
+									"        \"total\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The total Schema\",\r",
+									"            \"examples\": [\r",
+									"                12\r",
+									"            ]\r",
+									"        },\r",
+									"        \"total_pages\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The total_pages Schema\",\r",
+									"            \"examples\": [\r",
+									"                2\r",
+									"            ]\r",
+									"        },\r",
+									"        \"data\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The data Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"object\",\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"email\",\r",
+									"                    \"first_name\",\r",
+									"                    \"last_name\",\r",
+									"                    \"avatar\"\r",
+									"                ],\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"title\": \"The id Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            7,\r",
+									"                            8,\r",
+									"                           \r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"email\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"title\": \"The email Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"michael.lawson@reqres.in\",\r",
+									"                            \"lindsay.ferguson@reqres.in\",\r",
+									"                            \r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"first_name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"title\": \"The first_name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"Michael\",\r",
+									"                            \"Lindsay\",\r",
+									"                            \r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"last_name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"title\": \"The last_name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"Lawson\",\r",
+									"                            \"Ferguson\",\r",
+									"                            \r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"avatar\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"title\": \"The avatar Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"https://reqres.in/img/faces/7-image.jpg\",\r",
+									"                            \r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"examples\": [{\r",
+									"                    \"id\": 7,\r",
+									"                    \"email\": \"michael.lawson@reqres.in\",\r",
+									"                    \"first_name\": \"Michael\",\r",
+									"                    \"last_name\": \"Lawson\",\r",
+									"                    \"avatar\": \"https://reqres.in/img/faces/7-image.jpg\"\r",
+									"                },\r",
+									"                \r",
+									"                \r",
+									"                {\r",
+									"                    \"id\": 12,\r",
+									"                    \"email\": \"rachel.howell@reqres.in\",\r",
+									"                    \"first_name\": \"Rachel\",\r",
+									"                    \"last_name\": \"Howell\",\r",
+									"                    \"avatar\": \"https://reqres.in/img/faces/12-image.jpg\"\r",
+									"                }]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [{\r",
+									"                    \"id\": 7,\r",
+									"                    \"email\": \"michael.lawson@reqres.in\",\r",
+									"                    \"first_name\": \"Michael\",\r",
+									"                    \"last_name\": \"Lawson\",\r",
+									"                    \"avatar\": \"https://reqres.in/img/faces/7-image.jpg\"\r",
+									"                },]\r",
+									"               \r",
+									"                \r",
+									"                \r",
+									"            ]\r",
+									"        },\r",
+									"        \"support\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The support Schema\",\r",
+									"            \"required\": [\r",
+									"                \"url\",\r",
+									"                \"text\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"url\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The url Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"https://reqres.in/#support-heading\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"text\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The text Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"To keep ReqRes free, contributions towards server costs are appreciated!\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"url\": \"https://reqres.in/#support-heading\",\r",
+									"                \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"page\": 2,\r",
+									"        \"per_page\": 6,\r",
+									"        \"total\": 12,\r",
+									"        \"total_pages\": 2,\r",
+									"        \"data\": [{\r",
+									"            \"id\": 7,\r",
+									"            \"email\": \"michael.lawson@reqres.in\",\r",
+									"            \"first_name\": \"Michael\",\r",
+									"            \"last_name\": \"Lawson\",\r",
+									"            \"avatar\": \"https://reqres.in/img/faces/7-image.jpg\"\r",
+									"        }],\r",
+									"   \r",
+									"        \r",
+									"        \"support\": {\r",
+									"            \"url\": \"https://reqres.in/#support-heading\",\r",
+									"            \r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://reqres.in/api/users?page=2",
+							"raw": "https://reqres.in/api/users",
 							"protocol": "https",
 							"host": [
 								"reqres",
@@ -24,40 +275,13 @@
 							"path": [
 								"api",
 								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "2"
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GET Single user",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://reqres.in/api/users/185",
-							"protocol": "https",
-							"host": [
-								"reqres",
-								"in"
-							],
-							"path": [
-								"api",
-								"users",
-								"185"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Request",
+					"name": "Delete_User",
 					"event": [
 						{
 							"listen": "test",
@@ -65,7 +289,36 @@
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {\r",
 									"    pm.response.to.have.status(204);\r",
-									"});"
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is present\", function () {\r",
+									"    pm.response.to.have.header(\"ETag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is valid\", function () {\r",
+									"    var etagHeader = pm.response.headers.get(\"ETag\");\r",
+									"    pm.expect(etagHeader).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -74,8 +327,17 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": 9,\r\n\"email\": \"tobias.funke@reqres.in\",\r\n\"first_name\": \"Tobias\",\r\n\"last_name\": \"Funke\",\r\n\"avatar\": \"https://reqres.in/img/faces/9-image.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://reqres.in/api/users/2",
+							"raw": "https://reqres.in/api/users/417",
 							"protocol": "https",
 							"host": [
 								"reqres",
@@ -84,46 +346,129 @@
 							"path": [
 								"api",
 								"users",
-								"2"
+								"417"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "RegresPutSample",
+					"name": "Regres_Update_user_PUT",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"roy\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"typer\");\r",
 									"\r",
 									"\r",
-									"    pm.test(\"Body matches string\", function () {\r",
+									"    pm.test(\"Body has updated at\", function () {\r",
 									"        pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
 									"    });\r",
 									"\r",
-									"    pm.test(\"Status code name has string\", function () {\r",
+									"    pm.test(\"Status code name has ok\", function () {\r",
 									"        pm.response.to.have.status(\"OK\");\r",
 									"    });\r",
 									"    \r",
 									"pm.test(\"verify Successful POST request\", function () {\r",
 									"    pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
 									"});\r",
-									"});"
+									"});\r",
+									"\r",
+									"pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is present\", function () {\r",
+									"    pm.response.to.have.header(\"ETag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is valid\", function () {\r",
+									"    var etagHeader = pm.response.headers.get(\"ETag\");\r",
+									"    pm.expect(etagHeader).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    \r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"name\",\r",
+									"        \"job\",\r",
+									"        \"updatedAt\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The name Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"morpheus\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"job\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The job Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"zion resident\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"updatedAt\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The updatedAt Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"2023-02-26T09:46:32.447Z\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"name\": \"morpheus\",\r",
+									"        \"job\": \"zion resident\",\r",
+									"        \"updatedAt\": \"2023-02-26T09:46:32.447Z\"\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"saira\",\r\n    \"last_name\": \"roy\"\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -147,52 +492,131 @@
 					"response": []
 				},
 				{
-					"name": "DeleteRequest",
+					"name": "Create_New_User",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Verify that Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Validate Status code name has string OK\", function () {\r",
-									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"hessa\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Body to contain created string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"tutor\");\r",
+									"\r",
+									"pm.test(\"Status code name has 201 created\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"    });\r",
+									"\r",
+									" pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is present\", function () {\r",
+									"    pm.response.to.have.header(\"ETag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ETag is valid\", function () {\r",
+									"    var etagHeader = pm.response.headers.get(\"ETag\");\r",
+									"    pm.expect(etagHeader).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const schema = {\r",
+									"   \r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"name\",\r",
+									"        \"job\",\r",
+									"        \"id\",\r",
+									"        \"createdAt\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The name Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"morpheus\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"job\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The job Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"leader\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"id\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"345\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"createdAt\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The createdAt Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"2023-02-26T07:41:29.505Z\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"name\": \"morpheus\",\r",
+									"        \"job\": \"leader\",\r",
+									"        \"id\": \"345\",\r",
+									"        \"createdAt\": \"2023-02-26T07:41:29.505Z\"\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://reqres.in/api/users/delete/334",
-							"protocol": "https",
-							"host": [
-								"reqres",
-								"in"
-							],
-							"path": [
-								"api",
-								"users",
-								"delete",
-								"334"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"Preet\",\r\n    \"last_name\": \"sen\"\r\n   \r\n    \r\n}",
+							"raw": "{\r\n\"name\": \"hessa\",\r\n\"job\": \"tutor\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -213,14 +637,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET user which is deleted",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users/487",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								"487"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "All Get Requests",
+			"name": "All_ Get _Requests",
 			"item": [
 				{
-					"name": "Dog Api",
+					"name": "Dog_Api",
 					"event": [
 						{
 							"listen": "test",
@@ -258,7 +706,7 @@
 					"response": []
 				},
 				{
-					"name": "Jsontest",
+					"name": "ip_Jsontest",
 					"event": [
 						{
 							"listen": "test",
@@ -289,23 +737,7 @@
 					"response": []
 				},
 				{
-					"name": "Country Related",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Reddit",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Key value Json test",
+					"name": "ech_ Json _test_key_value",
 					"event": [
 						{
 							"listen": "test",
@@ -344,7 +776,7 @@
 					"response": []
 				},
 				{
-					"name": "Date jsontest",
+					"name": "Date_ jsontest",
 					"event": [
 						{
 							"listen": "test",
@@ -380,70 +812,38 @@
 					"response": []
 				},
 				{
-					"name": "Validate Jsontest",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Verify that status code is 200\",function(){\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test(\"verify that response time is less than 200ms\",function(){\r",
-									"    (pm.expect(pm.response.responseTime)).to.be.below(200);\r",
-									"\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://validate.jsontest.com/?json=%5BJSON-code-to-validate%5D",
-							"protocol": "http",
-							"host": [
-								"validate",
-								"jsontest",
-								"com"
-							],
-							"path": [
-								""
-							],
-							"query": [
-								{
-									"key": "json",
-									"value": "%5BJSON-code-to-validate%5D"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "RedditJavaScript",
+					"name": "Reddit_JavaScript",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"\r",
-									"pm.test(\"Verify thatResponse time is less than 200ms\", function () {\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Verify that Status code is 200\", function () {\r",
+									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Validate Status code name has string OK\", function () {\r",
+									"pm.test(\"Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
 									"\r",
-									"const response = pm.response.json();\r",
-									"console.log(response)\r",
+									" pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=UTF-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -451,6 +851,9 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -488,57 +891,107 @@
 					"response": []
 				},
 				{
-					"name": "JsonTestKeyValue",
+					"name": "ValidateJsonTest",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Verify that Response time is less than 200ms\",function()\r",
-									"{\r",
+									"pm.test(\"Verify thatResponse time is less than 200ms\", function () {\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"verify that status code is 200\",function()\r",
-									"{\r",
-									"pm.response.to.have.status(200);\r",
+									"pm.test(\"Verify that Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Validate Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
-									"const response = pm.response.json();\r",
-									"console.log(response)\r",
-									""
+									"\r",
+									" pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"});\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"const schema = {\r",
+									"    \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"size\",\r",
+									"        \"parse_time_nanoseconds\",\r",
+									"        \"object_or_array\",\r",
+									"        \"validate\",\r",
+									"        \"empty\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"size\": {\r",
+									"            \"title\": \"The size Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                1\r",
+									"            ]\r",
+									"        },\r",
+									"        \"parse_time_nanoseconds\": {\r",
+									"            \"title\": \"The parse_time_nanoseconds Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                552804\r",
+									"            ]\r",
+									"        },\r",
+									"        \"object_or_array\": {\r",
+									"            \"title\": \"The object_or_array Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"array\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"validate\": {\r",
+									"            \"title\": \"The validate Schema\",\r",
+									"            \"type\": \"boolean\",\r",
+									"            \"default\": false,\r",
+									"            \"examples\": [\r",
+									"                true\r",
+									"            ]\r",
+									"        },\r",
+									"        \"empty\": {\r",
+									"            \"title\": \"The empty Schema\",\r",
+									"            \"type\": \"boolean\",\r",
+									"            \"default\": false,\r",
+									"            \"examples\": [\r",
+									"                false\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": []\r",
+									"}"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://echo.jsontest.com/insert-key-here/insert-value-here/key/value",
-							"protocol": "http",
-							"host": [
-								"echo",
-								"jsontest",
-								"com"
-							],
-							"path": [
-								"insert-key-here",
-								"insert-value-here",
-								"key",
-								"value"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ValidateJsonTest",
-					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -563,10 +1016,92 @@
 					"response": []
 				},
 				{
-					"name": "ipJsonTest",
+					"name": "ip_JsonTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify thatResponse time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate Status code name has string OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"});\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"const schema ={\r",
+									"   \r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"ip\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"ip\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The ip Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"84.203.14.194\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"ip\": \"84.203.14.194\"\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://ip.jsontest.com/",
+							"protocol": "http",
+							"host": [
+								"ip",
+								"jsontest",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
 					},
 					"response": []
 				},
@@ -574,7 +1109,21 @@
 					"name": "groupktrelatedrestwebservices",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://ww7.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm",
+							"protocol": "http",
+							"host": [
+								"ww7",
+								"groupkt",
+								"com"
+							],
+							"path": [
+								"post",
+								"c9b0ccb9",
+								"country-and-other-related-rest-webservices.htm"
+							]
+						}
 					},
 					"response": []
 				},
@@ -582,9 +1131,46 @@
 					"name": "GroupKtrelatedwebservicestogetandsearchstatesandterritories",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://www.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm",
+							"protocol": "http",
+							"host": [
+								"www",
+								"groupkt",
+								"com"
+							],
+							"path": [
+								"post",
+								"c9b0ccb9",
+								"country-and-other-related-rest-webservices.htm"
+							]
+						}
 					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -604,7 +1190,117 @@
 									"\r",
 									"pm.test(\"Validate Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"const schema ={\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"status\",\r",
+									"        \"data\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"success\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"data\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The data Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"object\",\r",
+									"                \"default\": {},\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"employee_name\",\r",
+									"                    \"employee_salary\",\r",
+									"                    \"employee_age\",\r",
+									"                    \"profile_image\"\r",
+									"                ],\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The id Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            1\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"employee_name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"The employee_name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"Tiger Nixon\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"employee_salary\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The employee_salary Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            320800\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"employee_age\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The employee_age Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            61\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"profile_image\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"The profile_image Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"\"\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"examples\": [{\r",
+									"                    \"id\": 1,\r",
+									"                    \"employee_name\": \"Tiger Nixon\",\r",
+									"                    \"employee_salary\": 320800,\r",
+									"                    \"employee_age\": 61,\r",
+									"                    \"profile_image\": \"\"\r",
+									"                }]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [{\r",
+									"                    \"id\": 1,\r",
+									"                    \"employee_name\": \"Tiger Nixon\",\r",
+									"                    \"employee_salary\": 320800,\r",
+									"                    \"employee_age\": 61,\r",
+									"                    \"profile_image\": \"\"\r",
+									"                }]\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"status\": \"success\",\r",
+									"        \"data\": [{\r",
+									"            \"id\": 1,\r",
+									"            \"employee_name\": \"Tiger Nixon\",\r",
+									"            \"employee_salary\": 320800,\r",
+									"            \"employee_age\": 61,\r",
+									"            \"profile_image\": \"\"\r",
+									"        }]\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -646,19 +1342,121 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"Successfully! Record has been added\");\r",
-									"});"
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"neha\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(2000);\r",
+									"    });\r",
+									"\r",
+									"      pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(28);\r",
+									"    });\r",
+									"\r",
+									" \r",
+									"const schema = \r",
+									"    {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"status\",\r",
+									"        \"data\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"success\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"data\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The data Schema\",\r",
+									"            \"required\": [\r",
+									"                \"name\",\r",
+									"                \"salary\",\r",
+									"                \"age\",\r",
+									"                \"id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"name\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The name Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"test\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"salary\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The salary Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"123\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"age\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The age Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"23\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"default\": 0,\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        25\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"name\": \"test\",\r",
+									"                \"salary\": \"123\",\r",
+									"                \"age\": \"23\",\r",
+									"                \"id\": 25\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"status\": \"success\",\r",
+									"        \"data\": {\r",
+									"            \"name\": \"mario\",\r",
+									"            \"salary\": \"2000\",\r",
+									"            \"age\": \"26\",\r",
+									"            \"id\": 70\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"Sady\",\"salary\":\"123\",\"age\":\"23\"}",
+							"raw": "{\"name\":\"neha\",\"salary\":\"2000\",\"age\":\"28\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -699,21 +1497,133 @@
 									"\r",
 									"pm.test(\"Body matches string\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"Successfully! Record has been updated\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"lio\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"6000\");\r",
+									"    });\r",
+									"\r",
+									"      pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"28\");\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"const schema ={\r",
+									"   \r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"status\",\r",
+									"        \"data\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"success\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"data\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The data Schema\",\r",
+									"            \"required\": [\r",
+									"                \"name\",\r",
+									"                \"salary\",\r",
+									"                \"age\",\r",
+									"                \"id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"name\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The name Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"test\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"salary\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The salary Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"123\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"age\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The age Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"23\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"default\": 0,\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        25\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"name\": \"test\",\r",
+									"                \"salary\": \"123\",\r",
+									"                \"age\": \"23\",\r",
+									"                \"id\": 25\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"status\": \"success\",\r",
+									"        \"data\": {\r",
+									"            \"name\": \"test\",\r",
+									"            \"salary\": \"123\",\r",
+									"            \"age\": \"23\",\r",
+									"            \"id\": 25\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"   \r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
+									"\r",
+									"    \r",
+									"\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"Sady\",\"salary\":\"555\",\"age\":\"23\"}"
+							"raw": "{\"name\":\"lio\",\"salary\":\"6000\",\"age\":\"28\",\"Id\":2105}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "https://dummy.restapiexample.com/public/api/v1/update/23",
+							"raw": "https://dummy.restapiexample.com/public/api/v1/update/3281",
 							"protocol": "https",
 							"host": [
 								"dummy",
@@ -725,7 +1635,7 @@
 								"api",
 								"v1",
 								"update",
-								"23"
+								"3281"
 							]
 						}
 					},
@@ -744,7 +1654,71 @@
 									"\r",
 									"pm.test(\"Validate Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Successfully! Record has been deleted\");\r",
+									"});\r",
+									"\r",
+									"//checking the headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const schema = {\r",
+									"   \r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"status\",\r",
+									"        \"message\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"success\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"message\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The message Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"successfully! deleted Records\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"status\": \"success\",\r",
+									"        \"message\": \"successfully! deleted Records\"\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -755,10 +1729,15 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"Sady\",\"salary\":\"123\",\"age\":\"23\"}"
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "https://dummy.restapiexample.com/public/api/v1/delete/2",
+							"raw": "https://dummy.restapiexample.com/public/api/v1/delete/4",
 							"protocol": "https",
 							"host": [
 								"dummy",
@@ -770,11 +1749,57 @@
 								"api",
 								"v1",
 								"delete",
-								"2"
+								"4"
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET Single Employee ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummy.restapiexample.com/api/v1/employee/933",
+							"protocol": "https",
+							"host": [
+								"dummy",
+								"restapiexample",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"employee",
+								"933"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -799,6 +1824,64 @@
 									"pm.test(\"Validate Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
+									"//checking the headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"// Get the response header\r",
+									"const responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"// Check if the response header contains the expected value\r",
+									"pm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"    pm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"const schema = {\r",
+									"   \r",
+									"    \"id\": 0,\r",
+									"    \"category\": {\r",
+									"      \"id\": 0,\r",
+									"      \"name\": \"string\"\r",
+									"    },\r",
+									"    \"name\": \"doggie\",\r",
+									"    \"photoUrls\": [\r",
+									"      \"string\"\r",
+									"    ],\r",
+									"    \"tags\": [\r",
+									"      {\r",
+									"        \"id\": 0,\r",
+									"        \"name\": \"string\"\r",
+									"      }\r",
+									"    ],\r",
+									"    \"status\": \"available\"\r",
+									"  }\r",
+									"\r",
+									"\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
 									"\r",
 									""
 								],
@@ -807,6 +1890,9 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -833,20 +1919,209 @@
 					"response": []
 				},
 				{
-					"name": "Post",
+					"name": "Get Added pet by ID",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Successful POST request\", function () {\r",
-									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"pm.test(\"Verify that Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									"\r",
 									"\r",
 									"pm.test(\"Validate Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
+									"\r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"doggie tomy\");\r",
+									"    });\r",
+									"\r",
+									"   pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"www.tomyphotos.com\");\r",
+									"    });\r",
+									" \r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"available\");\r",
+									"    });\r",
+									"\r",
+									"     pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(86);\r",
+									"    });\r",
+									"\r",
+									"     pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin is set to the expected value\", function () {\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"const schema ={\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"category\",\r",
+									"        \"name\",\r",
+									"        \"photoUrls\",\r",
+									"        \"tags\",\r",
+									"        \"status\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                0\r",
+									"            ]\r",
+									"        },\r",
+									"        \"category\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The category Schema\",\r",
+									"            \"required\": [\r",
+									"                \"id\",\r",
+									"                \"name\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"default\": 0,\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        0\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"name\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The name Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"string\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": 0,\r",
+									"                \"name\": \"string\"\r",
+									"            }]\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The name Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"doggie\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"photoUrls\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The photoUrls Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"default\": \"\",\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"examples\": [\r",
+									"                    \"string\"\r",
+									"                ]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [\r",
+									"                    \"string\"]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"tags\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The tags Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"object\",\r",
+									"                \"default\": {},\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"name\"\r",
+									"                ],\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The id Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            0\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"The name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"string\"\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"examples\": [{\r",
+									"                    \"id\": 0,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [{\r",
+									"                    \"id\": 0,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"available\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 0,\r",
+									"        \"category\": {\r",
+									"            \"id\": 0,\r",
+									"            \"name\": \"string\"\r",
+									"        },\r",
+									"        \"name\": \"doggie\",\r",
+									"        \"photoUrls\": [\r",
+									"            \"string\"\r",
+									"        ],\r",
+									"        \"tags\": [{\r",
+									"            \"id\": 0,\r",
+									"            \"name\": \"string\"\r",
+									"        }],\r",
+									"        \"status\": \"available\"\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -854,22 +2129,10 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": 6,\r\n  \"petId\": 6,\r\n  \"quantity\": 6,\r\n  \"shipDate\": \"2023-09-18T10:44:59.859Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://petstore.swagger.io/v2/store/order",
+							"raw": "https://petstore.swagger.io/v2/pet/86",
 							"protocol": "https",
 							"host": [
 								"petstore",
@@ -878,8 +2141,8 @@
 							],
 							"path": [
 								"v2",
-								"store",
-								"order"
+								"pet",
+								"86"
 							]
 						}
 					},
@@ -899,18 +2162,437 @@
 									"pm.test(\"Validate Status code name has string OK\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
-									""
+									"\r",
+									"//checking the headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"\r",
+									"const schema =\r",
+									"{\r",
+									"    \r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"category\",\r",
+									"        \"name\",\r",
+									"        \"photoUrls\",\r",
+									"        \"tags\",\r",
+									"        \"status\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                9223372036854649000\r",
+									"            ]\r",
+									"        },\r",
+									"        \"category\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The category Schema\",\r",
+									"            \"required\": [\r",
+									"                \"id\",\r",
+									"                \"name\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"default\": 0,\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        0\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"name\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The name Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"string\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": 0,\r",
+									"                \"name\": \"string\"\r",
+									"            }]\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The name Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"doggie\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"photoUrls\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The photoUrls Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"default\": \"\",\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"examples\": [\r",
+									"                    \"string\"\r",
+									"                ]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [\r",
+									"                    \"string\"]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"tags\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The tags Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"object\",\r",
+									"                \"default\": {},\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"name\"\r",
+									"                ],\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The id Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            0\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"The name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"string\"\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"examples\": [{\r",
+									"                    \"id\": 0,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [{\r",
+									"                    \"id\": 0,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"available\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 9223372036854649000,\r",
+									"        \"category\": {\r",
+									"            \"id\": 0,\r",
+									"            \"name\": \"string\"\r",
+									"        },\r",
+									"        \"name\": \"doggie\",\r",
+									"        \"photoUrls\": [\r",
+									"            \"string\"\r",
+									"        ],\r",
+									"        \"tags\": [{\r",
+									"            \"id\": 0,\r",
+									"            \"name\": \"string\"\r",
+									"        }],\r",
+									"        \"status\": \"available\"\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})\r",
+									"  "
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 8,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"doggie\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 8,\r\n      \"name\": \"doggie bruno\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"raw": "{\r\n    \"id\": 86,\r\n    \"category\": {\r\n        \"id\": 3,\r\n        \"name\": \"second doggienow\"\r\n    },\r\n    \"name\": \"doggie tomy\",\r\n    \"photoUrls\": [\r\n        \"www.tomyphotos.com\"\r\n    ],\r\n    \"tags\": [\r\n        {\r\n            \"id\": 6,\r\n            \"name\": \"tomdog\"\r\n        }\r\n    ],\r\n    \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add_NewPet_Petsrore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify that Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate Status code name has string OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"doggie tomy\");\r",
+									"    });\r",
+									"\r",
+									"   pm.test(\"Body matches string\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"available\");\r",
+									"    });\r",
+									"\r",
+									"// Get the response header\r",
+									"const responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"// Check if the response header contains the expected value\r",
+									"pm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"    pm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"});\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"category\",\r",
+									"        \"name\",\r",
+									"        \"photoUrls\",\r",
+									"        \"tags\",\r",
+									"        \"status\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                66\r",
+									"            ]\r",
+									"        },\r",
+									"        \"category\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The category Schema\",\r",
+									"            \"required\": [\r",
+									"                \"id\",\r",
+									"                \"name\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"default\": 0,\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        3\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"name\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The name Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"string\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": 3,\r",
+									"                \"name\": \"string\"\r",
+									"            }]\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The name Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"doggie cookie\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"photoUrls\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The photoUrls Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"default\": \"\",\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"examples\": [\r",
+									"                    \"string\"\r",
+									"                ]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [\r",
+									"                    \"string\"]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"tags\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The tags Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"object\",\r",
+									"                \"default\": {},\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"name\"\r",
+									"                ],\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The id Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            6\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"The name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"string\"\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"examples\": [{\r",
+									"                    \"id\": 6,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [{\r",
+									"                    \"id\": 6,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"available\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 66,\r",
+									"        \"category\": {\r",
+									"            \"id\": 3,\r",
+									"            \"name\": \"string\"\r",
+									"        },\r",
+									"        \"name\": \"doggie cookie\",\r",
+									"        \"photoUrls\": [\r",
+									"            \"string\"\r",
+									"        ],\r",
+									"        \"tags\": [{\r",
+									"            \"id\": 6,\r",
+									"            \"name\": \"string\"\r",
+									"        }],\r",
+									"        \"status\": \"available\"\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": 86,\r\n\"category\": {\r\n\"id\": 3,\r\n\"name\": \"second doggie\"\r\n },\r\n\"name\": \"doggie tomy\",\r\n\"photoUrls\": [\r\n\"www.tomyphotos.com\"\r\n ],\r\n\"tags\": [\r\n{\r\n\"id\": 6,\r\n\"name\": \"tomdog\"\r\n}\r\n],\r\n\"status\": \"available\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -944,13 +2626,156 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Verify that Status code is 200\", function () {\r",
+									"pm.test(\"Verify that Status code is 405\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Validate Status code name has string OK\", function () {\r",
-									"    pm.response.to.have.status(\"OK\");\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
 									"});\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"//checking the headers\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": " poppykey",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api_key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/264281",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"264281"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Positive_Optional_Parameters",
+			"item": [
+				{
+					"name": "Regres_per_page 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify that status code is 200\",function(){pm.response.to.have.status(200)});\r",
+									"\r",
+									"pm.test(\"verify that status code has string ok\",function(){pm.response.to.have.status(\"OK\")}\r",
+									")\r",
+									"pm.test(\"value of per_page field is 6\",function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.per_page).to.eql(6);\r",
+									"});\r",
+									"//checking the headers\r",
+									" pm.test(\"Response content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -958,10 +2783,364 @@
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://petstore.swagger.io/v2/store/order/6",
+							"raw": "https://reqres.in/api/users/?per_page=6",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet store_filter_available",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify that status code is 200\",function(){pm.response.to.have.status(200)});\r",
+									"\r",
+									"pm.test(\"verify that status code has string ok\",function(){pm.response.to.have.status(\"OK\")}\r",
+									")\r",
+									"\r",
+									"    pm.test(\"Body matches string\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"available\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/findByStatus?status=available",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "available"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet_ASC",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify that status code is 200\",function(){pm.response.to.have.status(200)});\r",
+									"\r",
+									"pm.test(\"verify that status code has string ok\",function(){pm.response.to.have.status(\"OK\")}\r",
+									")\r",
+									"//checking the headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"// Parse the response body\r",
+									"let responseBodyone = pm.response.json();\r",
+									"let responseBodytwo = pm.response.json();\r",
+									"\r",
+									"// Check that the response body is an array\r",
+									"pm.expect(responseBodyone).to.be.an('array');\r",
+									"pm.expect(responseBodytwo).to.be.an('array');\r",
+									"\r",
+									"// Check that the items in the array are sorted by ID in ascending order\r",
+									"for (let i = 0; i < responseBodytwo.length - 1; i++) {\r",
+									"    pm.expect(responseBodytwo[i].id).to.be.below(responseBodytwo[i + 1].id);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/findByStatus?status=available&orderBy=name.asc",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "available"
+								},
+								{
+									"key": "orderBy",
+									"value": "name.asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Regres_skip",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify that status code is 200\",function(){pm.response.to.have.status(200)});\r",
+									"\r",
+									"pm.test(\"verify that status code has string ok\",function(){pm.response.to.have.status(\"OK\")}\r",
+									")\r",
+									"pm.test(\"Response should contain 5 items per page\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.length).to.eql(2);\r",
+									"});\r",
+									"\r",
+									" pm.test(\"content type is JSON\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users/?page=2&Skip=2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "Skip",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative testing with Valid input",
+			"item": [
+				{
+					"name": "Delete a resouce that don't exist",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Negative tests with invalid inputs",
+			"item": [
+				{
+					"name": "GET Order_Invalid_Id_SwaggerPetstore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status fail\",function(){pm.response.to.have.status(404)});\r",
+									"\r",
+									"pm.test(\"order Not Found\",function(){pm.response.to.have.status(\"Not Found\")}\r",
+									")\r",
+									"//checking the headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/store/order/12",
 							"protocol": "https",
 							"host": [
 								"petstore",
@@ -972,11 +3151,621 @@
 								"v2",
 								"store",
 								"order",
-								"6"
+								"12"
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Add  Pet_Invalid Input data_swaggerpetstore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify that Status code is 400\", function () {\r",
+									"    pm.response.to.have.status( 400);\r",
+									"});\r",
+									"\r",
+									"   pm.test(\"Status code has string Bad Request\", function () {\r",
+									"        pm.response.to.have.status(\"Bad Request\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"verify that Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"//checking the headers\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"category\",\r",
+									"        \"name\",\r",
+									"        \"photoUrls\",\r",
+									"        \"tags\",\r",
+									"        \"status\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                66\r",
+									"            ]\r",
+									"        },\r",
+									"        \"category\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The category Schema\",\r",
+									"            \"required\": [\r",
+									"                \"id\",\r",
+									"                \"name\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"default\": 0,\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        3\r",
+									"                    ]\r",
+									"                },\r",
+									"                \"name\": {\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"default\": \"\",\r",
+									"                    \"title\": \"The name Schema\",\r",
+									"                    \"examples\": [\r",
+									"                        \"string\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": 3,\r",
+									"                \"name\": \"string\"\r",
+									"            }]\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The name Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"doggie cookie\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"photoUrls\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The photoUrls Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"default\": \"\",\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"examples\": [\r",
+									"                    \"string\"\r",
+									"                ]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [\r",
+									"                    \"string\"]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"tags\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"default\": [],\r",
+									"            \"title\": \"The tags Schema\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"object\",\r",
+									"                \"default\": {},\r",
+									"                \"title\": \"A Schema\",\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"name\"\r",
+									"                ],\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"integer\",\r",
+									"                        \"default\": 0,\r",
+									"                        \"title\": \"The id Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            6\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"name\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"The name Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"string\"\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"examples\": [{\r",
+									"                    \"id\": 6,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            },\r",
+									"            \"examples\": [\r",
+									"                [{\r",
+									"                    \"id\": 6,\r",
+									"                    \"name\": \"string\"\r",
+									"                }]\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"available\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 66,\r",
+									"        \"category\": {\r",
+									"            \"id\": 3,\r",
+									"            \"name\": \"string\"\r",
+									"        },\r",
+									"        \"name\": \"doggie cookie\",\r",
+									"        \"photoUrls\": [\r",
+									"            \"string\"\r",
+									"        ],\r",
+									"        \"tags\": [{\r",
+									"            \"id\": 6,\r",
+									"            \"name\": \"string\"\r",
+									"        }],\r",
+									"        \"status\": \"available\"\r",
+									"    }]\r",
+									"}\r",
+									"pm.test(\"json schema validation\",()=>{\r",
+									"    pm.response.to.have.jsonSchema(schema)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": A#B,\r\n\"category\": {\r\n\"id\": 3,\r\n\"name\": \"string\"\r\n },\r\n\"name\": \"doggie cookie\",\r\n\"photoUrls\": [\r\n\"string\"\r\n ],\r\n\"tags\": [\r\n{\r\n\"id\": 6,\r\n\"name\": \"string\"\r\n}\r\n],\r\n\"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order_Invalid order id_SwaggerPetstore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status fail\",function(){pm.response.to.have.status(404)});\r",
+									"\r",
+									"pm.test(\"order Not Found\",function(){pm.response.to.have.status(\"Not Found\")}\r",
+									")\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"\t// Get the response header\r",
+									"\tconst responseHeader = pm.response.headers.get('Access-Control-Allow-Methods');\r",
+									"\r",
+									"\t// Check if the response header contains the expected value\r",
+									"\tpm.test(\"Access-Control-Allow-Methods header contains expected value\", function () {\r",
+									"\t\tpm.expect(responseHeader).to.include(\"GET, POST\",\"DELETE\",\"PUT\");\r",
+									"\t});\r",
+									"    pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/store/order/-5",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"store",
+								"order",
+								"-5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_missing required parameters_swagger petstore orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status fail\",function(){pm.response.to.have.status(405)});\r",
+									"\r",
+									"//checking the headers\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date is valid\", function () {\r",
+									"    var dateHeader = pm.response.headers.get(\"Date\");\r",
+									"    pm.expect(dateHeader).to.not.be.null;\r",
+									"    var date = new Date(dateHeader);\r",
+									"    pm.expect(date).to.not.be.NaN;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/store/order",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Destructive testing",
+			"item": [
+				{
+					"name": "Malformedcontent_url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check for expected error response\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"})\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/petvvvvvvvvv/findByStatus?status=available299999999999999999999999999999999999999========={{{{{{",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"petvvvvvvvvv",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "available299999999999999999999999999999999999999========={{{{{{"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wrong_Contentype_payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check for expected error response\", function () {\r",
+									"    pm.response.to.have.status(415);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//wrong content in payload\r\n\r\n{\"name\":\"lio\",\"salary\":\"2000\",\"age\":\"28\"}"
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_PET_No_data_Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check for expected error response\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//No data in payload",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Illegal_characters_payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check for expected error response\", function () {\r",
+									"    pm.response.to.have.status(415);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Origin\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is set to keep-alive\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"abc\",\r\n\"category\": {\r\n\"id\": 3,\r\n\"name\": 45678\r\n },\r\n\"name\": hjk45678,\r\n\"photoUrls\": [\r\n\"www.tomyphotos.com\"\r\n ],\r\n\"tags\": [\r\n{\r\n\"id\": 6,\r\n\"name\": \"tomdog\"\r\n}\r\n],\r\n\"status\": \"available\"\r\n}"
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
