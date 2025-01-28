@@ -1,4 +1,7 @@
-# Postman 
-Postman is one of the most popular software testing tools which is used for API testing. 
-With the help of this tool, developers can easily create, test, share, and document APIs.
-In this project a couple of end points are tested and validated .
+# Postman
+Postman is a popular API testing tool used by developers to test, develop, document, and monitor APIs. 
+It provides a user-friendly interface to send requests to APIs, inspect their responses, and debug issues. 
+Postman supports REST, SOAP, GraphQL, and other API protocols.
+In this project few endpoints were tested and validated
+
+
