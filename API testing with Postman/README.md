@@ -4,5 +4,5 @@ It provides a user-friendly interface to send requests to APIs, inspect their re
 Postman supports REST, SOAP, GraphQL, and other API protocols.
 In this project endpoints were tested and validated.
 ## Softwares Used
-Postman APP
+Postman APP,
 Swagger
