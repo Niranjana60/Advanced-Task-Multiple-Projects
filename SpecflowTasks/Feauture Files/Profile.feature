@@ -64,7 +64,7 @@ Examples:
 	And I click on save button
 	Then I validate that Description is saved
 
-	 @mytag
+	@mytag
         Scenario:I am able to add my Availability details in Profile.
 	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
 	And I am at the Profile page
@@ -154,7 +154,7 @@ Examples:
     When I click on image of the displayed person
     Then I validate that person is under LogoDesign subCategory
 
-	@mytag
+    @mytag
     Scenario: User is able to search skills by Filter
     Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
     And I am at the Profile page
