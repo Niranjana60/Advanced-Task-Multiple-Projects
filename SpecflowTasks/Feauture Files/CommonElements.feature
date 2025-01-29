@@ -20,7 +20,7 @@ As a user i am able to do the functionalties of the application which is common 
    Then i validate Load more
 
     
-	@my tag
+    @my tag
     Scenario: I am able to Delete Notifications
     Given I am logged in at "http://192.168.99.100:5000/" to log into application
     When i click sign in from login page
