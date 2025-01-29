@@ -1,15 +1,15 @@
 ﻿
 Feature: ShareSkill
-        As a User is  I am able to create New Share skill
+        As a User is I am able to create New Share skill
 
-   @mytag
-   Scenario: user is able to create new share skill 
+    @mytag
+    Scenario: user is able to create new share skill 
     Given I am logged in at "http://192.168.99.100:5000/" to log into application.
-	And i click sign in from login page
+    And i click sign in from login page
     And I enter My Login Credentials
-	And I am at the Profile page now
-	When i click shareskill button fronm profile page
-	And i enter title from service listing page
+    And I am at the Profile page now
+    When i click shareskill button fronm profile page
+    And i enter title from service listing page
     And I enter Description
     And I select a category
     And I select a subcategory
