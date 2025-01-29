@@ -1,44 +1,45 @@
 ﻿Feature: Profile
         As a seller I want to add my details in profile.
-		 I am also able to view my profile details
-   @automated
-   Scenario Outline: user is able to Add Languages in profile
-    Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When I click on Add New button below Language
-	And I Add <Language> and <LanguageLevel> on Languages tab
-	And I click on Add button below language tab
-	Examples:
-		| Language | LanguageLevel   |
-		| English  | Fluent          |
+	I am also able to view my profile details
+ 
+ @automated
+Scenario Outline: user is able to Add Languages in profile
+Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+And I am at the Profile page
+When I click on Add New button below Language
+And I Add <Language> and <LanguageLevel> on Languages tab
+And I click on Add button below language tab
+Examples:
+| Language | LanguageLevel   |
+| English  | Fluent          |
 
 
-   @automated
-   Scenario Outline: I am able to add my skill details
-    Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When I click on Skills tab
-	And I click on Add New button below Skills tab
-	And I Add <Skill> and <Skill Level> on Skills tab
-	And I click on Add button
-	Then Validate that <Skill> and <Skill Level> are added.
-	Examples:
-		| Skill | Skill Level |
-		| C     | Beginner    |
+@automated
+Scenario Outline: I am able to add my skill details
+Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+And I am at the Profile page
+When I click on Skills tab
+And I click on Add New button below Skills tab
+And I Add <Skill> and <Skill Level> on Skills tab
+And I click on Add button
+Then Validate that <Skill> and <Skill Level> are added.
+Examples:
+| Skill | Skill Level |
+| C     | Beginner    |
 			
 
-   @automated
-    Scenario Outline:I am able to add my Certification details
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When I click on Certification Tab
-	And I click on Add New button below certification tab
-	And I Add <Certificate or Award> and <Certified From> and <Year> on certification tab
-	And I click on Add button
-    Then I Validate that <Certificate or Award> and <Certified From> and <Year>are added
-	Examples:
-	| Certificate or Award | Certified From | Year |
-	|     Barch            |    Adobe       |  2017|
+ @automated
+Scenario Outline:I am able to add my Certification details
+Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+And I am at the Profile page
+When I click on Certification Tab
+And I click on Add New button below certification tab
+And I Add <Certificate or Award> and <Certified From> and <Year> on certification tab
+And I click on Add button
+Then I Validate that <Certificate or Award> and <Certified From> and <Year>are added
+Examples:
+| Certificate or Award | Certified From | Year |
+|     Barch            |    Adobe       |  2017|
 
 	@automated
     Scenario Outline:I am able to add my Education details 
