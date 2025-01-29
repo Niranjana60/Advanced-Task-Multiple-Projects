@@ -41,52 +41,52 @@ Examples:
 | Certificate or Award | Certified From | Year |
 |     Barch            |    Adobe       |  2017|
 
-        @automated
-        Scenario Outline:I am able to add my Education details 
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When I click on Education tab
-	And I click on Add New button of Education tab
-	And I Add <College Name> and <Country of college> and <Title> and <Degree> and <Year of graduation> on Education tab
-	And I click on Add button.
-	Then Validate that <College Name> and <Country of college> and <Title> and <Degree> and <Year of graduation> are added
-	Examples:
-	| College Name | Country of college | Title | Degree | Year of graduation |
-	| JTS          | Angola             | MFA   | VLSI   | 2022               |
+ @automated
+ Scenario Outline:I am able to add my Education details 
+ Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+ And I am at the Profile page
+ When I click on Education tab
+ And I click on Add New button of Education tab
+ And I Add <College Name> and <Country of college> and <Title> and <Degree> and <Year of graduation> on Education tab
+ And I click on Add button.
+ Then Validate that <College Name> and <Country of college> and <Title> and <Degree> and <Year of graduation> are added
+ Examples:
+  | College Name | Country of college | Title | Degree | Year of graduation |
+  | JTS          | Angola             | MFA   | VLSI   | 2022               |
 	
 
-        @mytag
-        Scenario:I am able to add my Description in Profile
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When I click on Edit button near Description box
-	And I enter description in Description box
-	And I click on save button
-	Then I validate that Description is saved
+@mytag
+Scenario:I am able to add my Description in Profile
+Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+And I am at the Profile page
+When I click on Edit button near Description box
+And I enter description in Description box
+And I click on save button
+Then I validate that Description is saved
 
-	@mytag
-        Scenario:I am able to add my Availability details in Profile.
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When i click on Availability drop down list.
-	And i select "Part time" from availabilty drop down list.
-	Then i validate that "Part time" is selected from availability drop down list. 
+@mytag
+Scenario:I am able to add my Availability details in Profile.
+Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+And I am at the Profile page
+When i click on Availability drop down list.
+And i select "Part time" from availabilty drop down list.
+Then i validate that "Part time" is selected from availability drop down list. 
 
-	 @mytag
-        Scenario:I am able to add my Hours details in Profile.
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When i click on Hours drop down list.
-	And i select "Less than 30hours a week" from Hours drop down list.
+@mytag
+Scenario:I am able to add my Hours details in Profile.
+Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+And I am at the Profile page
+When i click on Hours drop down list.
+And i select "Less than 30hours a week" from Hours drop down list.
 	
 
-	 @mytag
-        Scenario:I am able to add my Earn Target details in Profile.
-	Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
-	And I am at the Profile page
-	When i click on Earn Target drop down list
-	And i select "Less than $500 per month" from Target drop down list.
-	Then i validate that "Less than $500 per month" is selected from Target drop down list. 
+ @mytag
+ Scenario:I am able to add my Earn Target details in Profile.
+ Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
+ And I am at the Profile page
+ When i click on Earn Target drop down list
+ And i select "Less than $500 per month" from Target drop down list.
+ Then i validate that "Less than $500 per month" is selected from Target drop down list. 
 
 
        @mytag
@@ -124,7 +124,7 @@ Examples:
    Then i validate the Received Requests
 
 
-  @mytag
+    @mytag
     Scenario: I am able to send chat messages
     Given I am logged in at "http://192.168.99.100:5000/" as user "herrasaad@gmail.com" with password "herrasaad@123".
     And I am at the Profile page
