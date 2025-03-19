@@ -8,9 +8,12 @@ o	The frontend handles user interactions, such as creating and managing profiles
 o	Written in C# using ASP.NET Core for building RESTful APIs.
 	Database:
 o	A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
+The major modules of the application are Registration,Login,Profile (Add Language,Education,Certifications),Share Skills,Manage Listing(Edit and delete received requests),
+search skills,notifications ,chat,chat history
 
 The following tasks were accomplished during the project
-1) Automating the application using Page object Model using Data driven approach.
+1) Manual testing,Writing Test plan,Test cases,Execution.
+2) Automating the application using Page object Model using Data driven approach. 
 2) Building specflow framework with extent reports integration
 3) Performance testing using Jmeter
 4) API testing using Postman and SOAP UI
