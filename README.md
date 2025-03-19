@@ -5,11 +5,11 @@ The technical architecture of the MARS application typically includes the follow
 Frontend-Developed using ReactJS and Semantic-UI for the user interface.
 
 
-o	The frontend handles user interactions, such as creating and managing profiles, adding skills, education, and certifications.
+	The frontend handles user interactions, such as creating and managing profiles, adding skills, education, and certifications.
 	Backend:
-o	Written in C# using ASP.NET Core for building RESTful APIs.
+	Written in C# using ASP.NET Core for building RESTful APIs.
 	Database:
-o	A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
+	A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
 The major modules of the application are Registration,Login,Profile (Add Language,Education,Certifications),Share Skills,Manage Listing(Edit and delete received requests),
 search skills,notifications ,chat,chat history
 
