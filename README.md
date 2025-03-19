@@ -4,13 +4,12 @@ The MARS application project at MVP Studio is a simple web-based system with a c
 The technical architecture of the MARS application typically includes the following components
 Frontend-Developed using ReactJS and Semantic-UI for the user interface.
 
-
-	The frontend handles user interactions, such as creating and managing profiles, adding skills, education, and certifications.
-	Backend:
-	Written in C# using ASP.NET Core for building RESTful APIs.
-	Database:
-	A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
-The major modules of the application are Registration,Login,Profile (Add Language,Education,Certifications),Share Skills,Manage Listing(Edit and delete received requests),
+The frontend handles user interactions, such as creating and managing profiles, adding skills, education, and certifications.
+Backend:
+Written in C# using ASP.NET Core for building RESTful APIs.
+Database:
+A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
+The major functionalities of the application are Registration,Login,Profile (Add Language,Education,Certifications),Share Skills,Manage Listing(Edit and delete received requests),
 search skills,notifications ,chat,chat history
 
 The following tasks were accomplished during the project
