@@ -8,6 +8,7 @@ The frontend handles user interactions, such as creating and managing profiles, 
 
 Backend:
 Written in C# using ASP.NET Core for building RESTful APIs.
+
 Database:
 A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
 The major functionalities of the application are Registration,Login,Profile (Add Language,Education,Certifications),Share Skills,Manage Listing(Edit and delete received requests),
