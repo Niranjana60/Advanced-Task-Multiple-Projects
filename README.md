@@ -3,6 +3,8 @@ This project is associated with MVP Studio internship
 The MARS application project at MVP Studio is a simple web-based system with a core focus on onboarding and profile management. 
 The technical architecture of the MARS application typically includes the following components
 Frontend-Developed using ReactJS and Semantic-UI for the user interface.
+
+
 o	The frontend handles user interactions, such as creating and managing profiles, adding skills, education, and certifications.
 	Backend:
 o	Written in C# using ASP.NET Core for building RESTful APIs.
