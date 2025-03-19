@@ -11,8 +11,9 @@ Written in C# using ASP.NET Core for building RESTful APIs.
 
 Database:
 A SQL Server database is commonly used to store user data such as profile details, skills, education, certifications, etc.
+
 The major functionalities of the application are Registration,Login,Profile (Add Language,Education,Certifications),Share Skills,Manage Listing(Edit and delete received requests),
-search skills,notifications ,chat,chat history
+search skills,Upload profile,notifications ,chat,chat history
 
 The following tasks were accomplished during the project
 1) Manual testing,Writing Test plan,Test cases,Execution.
