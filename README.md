@@ -5,6 +5,7 @@ The technical architecture of the MARS application typically includes the follow
 Frontend-Developed using ReactJS and Semantic-UI for the user interface.
 
 The frontend handles user interactions, such as creating and managing profiles, adding skills, education, and certifications.
+
 Backend:
 Written in C# using ASP.NET Core for building RESTful APIs.
 Database:
